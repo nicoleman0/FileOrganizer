@@ -1,7 +1,7 @@
 import shutil
 import os
 
-directory = os.path.join(os.path.expanduser('~'), 'Documents')
+directory = os.path.join(os.path.expanduser('~'), 'Documents') # change this to the directory you want to organize
 
 extensions ={
     ".pdf": "PDF",
@@ -35,16 +35,18 @@ for filename in os.listdir(directory): # Loop through all the files in the direc
     if os.path.isfile(file_path): # Check if the file is a file
         extension = os.path.splitext(filename)[1].lower() 
 
-        if extension in extensions:
-            folder_name = extensions[extension]
+        if extension in extensions: # Check if the file extension is in the extensions dictionary
+            folder_name = extensions[extension] 
 
-            folder_path = os.path.join(directory, folder_name)
+            folder_path = os.path.join(directory, folder_name) # Create the folder path
             os.makedirs(folder_path, exist_ok=True)
 
-            destination = os.path.join(folder_path, filename)
+            destination = os.path.join(folder_path, filename) # Create the destination path
             shutil.move(file_path, destination)
-            print(f"Moved {filename} to {folder_name}")
+            print(f"Moved {filename} to {folder_name}") 
         else:
             print(f"Unknown file type: Skipping {filename} ...")
     else:
         print(f"Skipping {filename} as it is a directory ...")
+
+print("Organizing files completed!")
